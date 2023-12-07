@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  backend-container:
+    container_name: backend-container
+    image: backend-image
+    build:
+      context: ../backend
+      dockerfile: ../backend/Dockerfile
+    ports:
+      - "8090:8090"
+
+  frontend-container:
+    container_name: frontend-container
+    image: frontend-image # Replace with your frontend image name
+    build:
+      context: ../frontend
+      dockerfile: ../frontend/Dockerfile
+    ports:
+      - "2304:2304"
+
+  nginx-container:
+    container_name: nginx-container
+    image: nginx-image
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - backend-container
+      - frontend-container
+
+networks:
+  default:
+    name: mnw-network
+
