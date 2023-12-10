@@ -4,8 +4,8 @@ services:
     container_name: backend-container
     image: backend-image
     build:
-      context: ../backend
-      dockerfile: ../backend/Dockerfile
+      context: ../backend-js
+      dockerfile: ../backend-js/Dockerfile
     ports:
       - "8090:8090"
 
