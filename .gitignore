@@ -1,1 +1,3 @@
-certificates/
+certs/
+old-certs/
+.DS_store
